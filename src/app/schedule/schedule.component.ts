@@ -31,6 +31,7 @@ export class ScheduleComponent implements OnInit {
     this.getSchedules();
   }
 
+  focusedSchedule = null;
   getSchedules() {
 
     this.db.list('datas/rooms').snapshotChanges().pipe(
