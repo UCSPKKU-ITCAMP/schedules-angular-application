@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { ScheduleComponent } from './schedule/schedule.component';
@@ -23,7 +24,9 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    NoopAnimationsModule,
     MatCardModule,
+    MatTooltipModule,
     MatButtonModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
