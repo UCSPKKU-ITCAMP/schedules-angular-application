@@ -1,14 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { MatButtonModule, MatCardModule } from '@angular/material';
+import { MatIconModule} from '@angular/material/icon';
+import { MatTooltipModule} from '@angular/material/tooltip';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+
+const routes: Routes = [
+  { path: 'schedule', component: ScheduleComponent }
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ScheduleComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatCardModule,
+    MatButtonModule,
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    MatIconModule,
+    MatTooltipModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
