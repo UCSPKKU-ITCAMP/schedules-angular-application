@@ -14,15 +14,19 @@ import { AppComponent } from './app.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { SchedulelistComponent } from './schedulelist/schedulelist.component';
+
 const routes: Routes = [
-  { path: 'schedule', component: ScheduleComponent }
+  { path: '', component: ScheduleComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     ScheduleComponent,
-    NavbarComponent
+    NavbarComponent,
+    SchedulelistComponent,
+    
   ],
   imports: [
     BrowserModule,

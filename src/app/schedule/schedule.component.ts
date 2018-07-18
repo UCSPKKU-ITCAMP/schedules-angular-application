@@ -12,7 +12,7 @@ import { resolve } from 'url';
 export class ScheduleComponent implements OnInit {
 
   focusedSchedule = null;
-  scheduleArray = [];
+  scheduleArray = null;
   roomArray = [];
   speakerArray = [];
 
@@ -22,45 +22,27 @@ export class ScheduleComponent implements OnInit {
     this.getSchedules();
   }
 
+  schedules = null;
+
+  
+
+  onTabChanged(obj: any) {
+    console.log(obj.rooms)
+   this.scheduleArray = obj.rooms
+  }
+
+
   getSchedules() {
-    this.db.list('datas/rooms').snapshotChanges().pipe(
-      map(rooms => {
-        return rooms.map(room => {
-          let index = room.payload.val();
-          index['key'] = room.key;
-          return index;
-        })
-      })
-    ).subscribe(res => {
-      this.roomArray = res;
+    this.db.list("2018/schedules").snapshotChanges().pipe(map(room => {
+      return room as any
+    })).subscribe(res => {
+     var items = res.map((item) => {
+        return item.payload.val();
+      });
+      
+      this.schedules = items;
     })
-
-    this.db.list('datas/speakers').snapshotChanges().pipe(
-      map(speakers => {
-        return speakers.map(speaker => {
-          let index = speaker.payload.val();
-          index['key'] = speaker.key;
-          return index;
-        })
-      })
-    ).subscribe(res => {
-      this.speakerArray = res;
-    });
-
-    this.db.list('datas/schedules').valueChanges().pipe(
-       map(schedules => {
-        return schedules.map(schedule => {
-          let index = schedule;
-          this.speakerArray.map(x => console.log(x));
-          index['speaker'] = this.speakerArray.filter(x => schedule['speaker_id'] == x['key'])[0];
-          index['room'] = this.roomArray.filter(x => schedule['room_id'] == x['key'])[0];
-          return index;
-        })
-      })
-    ).subscribe(res => {
-      console.log("schedule response", res);
-      this.scheduleArray = res;
-    })
+ 
   }
 
 }

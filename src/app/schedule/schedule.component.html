@@ -1,30 +1,4 @@
 
-<app-navbar></app-navbar>
-<div class="container-fluid" style="padding-top: 130px;" *ngIf="scheduleArray">
-  <div class="row" style="padding-left: 8px;padding-right: 8px;">
-    <div class="col-md-4 col-lg-3 col-12" style="margin:0px;padding: 4px !important;" *ngFor="let schedule of scheduleArray;">
-      
-      <mat-card  [class.mat-elevation-z2]="focusedSchedule != schedule" (mouseover)="focusedSchedule = schedule" [class.mat-elevation-z16]="focusedSchedule == schedule" style="background: white;">
+<app-navbar [schedules] = "schedules" (selectedSchedule)="onTabChanged($event)"></app-navbar>
 
-        <div class="d-flex flex-row">
-          <img src="https://api.adorable.io/avatars/84/{{schedule.speaker.name}}.png" alt="Circle Image" class="rounded-circle img-fluid" style="width: 64px; height: 64px;" >
-          <div style="margin-left: 20px;">
-          <h4 style="padding-bottom: 0px;margin-bottom: 0px;">{{schedule.speaker.name}}</h4>
-          <h6 style="margin-top:0px;color: #686868;font-weight: 100;text-transform: none;">{{schedule.speaker.position}} | {{schedule.speaker.company}}</h6>
-        </div>
-        </div>
-        <h5 style="min-height: 60px;">{{schedule.speaker.topic}}</h5>
-        <div class="d-flex flex-row"
-       >
-        <mat-icon style="width: 24px;height: 24px;">room</mat-icon>
-         <span style="padding-left: 10px;margin-top: 0px;font-size: 1em;"
-       
-        > {{schedule.room.name}}
-      </span>
-      <mat-icon  matTooltip="{{schedule.room.info}}"
-      matTooltipPosition="right" style="color:#68686863;margin-left:5px;font-size:15px;margin-top: 4.8px;">info</mat-icon>
-      </div>
-      </mat-card>
-    </div>
-  </div>
-</div>
+<app-schedulelist [scheduleArray] = scheduleArray ></app-schedulelist>
