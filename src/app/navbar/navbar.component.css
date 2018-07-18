@@ -1,0 +1,14 @@
+.mat-tab{
+    overflow: auto;
+}
+
+.mat-tab-body-wrapper{
+display: none !important;
+}
+
+/deep/ .mat-tab-label {
+    color: #000000;
+    
+    font-weight: 800 !important;
+    font-family: 'Open Sans' !important;
+  }

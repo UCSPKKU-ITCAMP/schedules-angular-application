@@ -12,7 +12,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-
+import { NavbarComponent } from './navbar/navbar.component';
+import {MatTabsModule} from '@angular/material/tabs';
 const routes: Routes = [
   { path: 'schedule', component: ScheduleComponent }
 ]
@@ -20,12 +21,14 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     NoopAnimationsModule,
     MatCardModule,
+    MatTabsModule,
     MatTooltipModule,
     MatButtonModule,
     AngularFirestoreModule,

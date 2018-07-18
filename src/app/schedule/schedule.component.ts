@@ -11,29 +11,18 @@ import { resolve } from 'url';
 })
 export class ScheduleComponent implements OnInit {
 
+  focusedSchedule = null;
   scheduleArray = [];
   roomArray = [];
   speakerArray = [];
 
-  // scheduleArray = [];
-
   constructor(public db: AngularFireDatabase) { }
 
   ngOnInit() {
-    // this.db.list('datas').snapshotChanges(['child_changed']).subscribe(snapshot => {
-    //   if (snapshot) {
-    //     console.log('snapahaot', snapshot);
-    //     this.scheduleArray = [];
-    //     this.roomArray = [];
-    //     this.speakerArray = [];
-    //   }
-    // });
     this.getSchedules();
   }
 
-  focusedSchedule = null;
   getSchedules() {
-
     this.db.list('datas/rooms').snapshotChanges().pipe(
       map(rooms => {
         return rooms.map(room => {
@@ -57,27 +46,6 @@ export class ScheduleComponent implements OnInit {
     ).subscribe(res => {
       this.speakerArray = res;
     });
-
-    // forkJoin([this.db.list('datas/rooms').snapshotChanges().pipe(
-    //   map(rooms => {
-    //     return rooms.map(room => {
-    //       let index = room.payload.val();
-    //       index['key'] = room.key;
-    //       return index;
-    //     })
-    //   })
-    // ), this.db.list('datas/speakers').snapshotChanges().pipe(
-    //   map(speakers => {
-    //     return speakers.map(speaker => {
-    //       let index = speaker.payload.val();
-    //       index['key'] = speaker.key;
-    //       return index;
-    //     })
-    //   })
-    // )]).subscribe(pair => {
-    //     console.log('forkjoin');
-    //     console.log(pair,'fsfdsfsd');
-    // })
 
     this.db.list('datas/schedules').valueChanges().pipe(
        map(schedules => {
